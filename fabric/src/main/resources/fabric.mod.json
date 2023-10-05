@@ -1,0 +1,24 @@
+{
+  "schemaVersion": 1,
+  "id": "customcursorcomm",
+  "version": "${version}",
+
+  "name": "CustomCursorComm",
+  "description": "",
+  "authors": [],
+  "contact": {},
+
+  "license": "GNU GPL 3.0",
+  "icon": "icon.png",
+
+  "environment": "*",
+  "entrypoints": {},
+  "mixins": [
+    "CustomCursor-comm-common.mixins.json"
+  ],
+  "depends": {
+    "fabricloader": ">=0.14.22",
+    "architectury": "",
+    "minecraft": ">=1.20.1"
+  }
+}

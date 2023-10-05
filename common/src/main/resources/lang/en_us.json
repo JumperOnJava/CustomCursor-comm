@@ -1,0 +1,10 @@
+{
+  "customcursor.edit.confirm": "Confirm",
+  "customcursor.edit.cancel": "Cancel",
+  "customcursor.edit.x": "X offset",
+  "customcursor.edit.y": "Y offset",
+  "customcursor.edit.size": "Size",
+  "customcursor.edit.enabled.true": "Cursor: enabled",
+  "customcursor.edit.enabled.false": "Cursor: disabled",
+  "customcursor.openbutton": "Edit cursor"
+}
