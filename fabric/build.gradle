@@ -41,6 +41,7 @@ shadowJar {
 remapJar {
     inputFile.set shadowJar.archiveFile
     dependsOn shadowJar
+    archiveFileName = "${archivesBaseName}-${project.version}-fabric.jar"
     archiveClassifier.set(null)
 }
 

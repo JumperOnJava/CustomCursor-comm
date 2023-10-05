@@ -12,7 +12,9 @@
   "icon": "icon.png",
 
   "environment": "*",
-  "entrypoints": {},
+  "entrypoints": {
+    "client": ["io.github.jumperonjava.customcursorcomm.fabric.CustomcursorcommFabric"]
+  },
   "mixins": [
     "CustomCursor-comm-common.mixins.json"
   ],

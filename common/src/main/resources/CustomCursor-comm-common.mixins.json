@@ -7,7 +7,8 @@
   ],
   "client": [
     "MouseOptionsScreenMixin",
-    "ScreenMixin"
+    "ScreenMixin",
+    "TooltipPositionMixin"
   ],
   "injectors": {
     "defaultRequire": 1
