@@ -14,13 +14,20 @@ configurations {
     runtimeClasspath.extendsFrom common
     developmentFabric.extendsFrom common
 }
-
+repositories{
+    maven {
+        name = "Modrinth"
+        url = "https://api.modrinth.com/maven"
+    }
+}
 dependencies {
     modImplementation "net.fabricmc:fabric-loader:${rootProject.fabric_loader_version}"
     modApi "net.fabricmc.fabric-api:fabric-api:${rootProject.fabric_api_version}"
     // Remove the next line if you don't want to depend on the API
+    //modImplementation "maven.modrinth:cobblemon:YEzu8qAH"
     //modApi "dev.architectury:architectury-fabric:${rootProject.architectury_version}"
 
+    modImplementation("net.fabricmc:fabric-language-kotlin:1.10.10+kotlin.1.9.10")
     common(project(path: ":common", configuration: "namedElements")) { transitive false }
     shadowCommon(project(path: ":common", configuration: "transformProductionFabric")) { transitive false }
 }
