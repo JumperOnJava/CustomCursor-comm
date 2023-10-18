@@ -80,7 +80,7 @@ public class CursorEditScreen extends Screen {
             onSuccess.accept(targetConfig);
         }
         catch (Exception e){e.printStackTrace();}
-        super.close();
+        this.close();
     }
 
     @Override
