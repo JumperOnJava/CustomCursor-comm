@@ -26,8 +26,8 @@ public class MouseOptionsScreenMixin extends Screen {
     @Inject(method = "init",at = @At("HEAD"),locals = LocalCapture.CAPTURE_FAILHARD)
     void inject(CallbackInfo ci){
         int k = this.height / 6 - 12 + 24 * 3;
-        var cursorEditScreenButton = new ButtonWidget.Builder(Text.translatable("Edit cursor"),(buttonWidget)->{
-            MinecraftClient.getInstance().setScreen(new CursorEditScreen(CustomCursorInit.getConfig().pointer, c -> {
+        var cursorEditScreenButton = new ButtonWidget.Builder(Text.translatable("customcursor.openbutton"),(buttonWidget)->{
+            MinecraftClient.getInstance().setScreen(new CursorEditScreen(this,CustomCursorInit.getConfig().pointer, c -> {
                 var cfg = new CursorConfigStorage();
                 cfg.pointer = c;
                 CustomCursorInit.setConfig(cfg);

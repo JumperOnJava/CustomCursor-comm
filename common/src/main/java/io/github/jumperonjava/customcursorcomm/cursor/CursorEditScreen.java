@@ -1,10 +1,15 @@
 package io.github.jumperonjava.customcursorcomm.cursor;
 
 import io.github.jumperonjava.customcursorcomm.util.SliderWidget;
+import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.gui.DrawContext;
 import net.minecraft.client.gui.screen.Screen;
+import net.minecraft.client.gui.screen.TitleScreen;
+import net.minecraft.client.gui.screen.option.GameOptionsScreen;
+import net.minecraft.client.gui.screen.option.MouseOptionsScreen;
 import net.minecraft.client.gui.widget.ButtonWidget;
 import net.minecraft.client.gui.widget.TextFieldWidget;
+import net.minecraft.datafixer.fix.OminousBannerBlockEntityRenameFix;
 import net.minecraft.text.Text;
 import net.minecraft.util.Identifier;
 
@@ -15,14 +20,18 @@ public class CursorEditScreen extends Screen {
     private final Consumer<CursorSettings> onSuccess;
     private final CursorSettings targetConfig;
     private static int heightOffset = (int) (24*2.5);
-    public CursorEditScreen(CursorSettings cursorConfig, Consumer<CursorSettings> onSuccess) {
+    private final Screen parent;
+
+    public CursorEditScreen(Screen parent,CursorSettings cursorConfig, Consumer<CursorSettings> onSuccess) {
         super(Text.empty());
+        this.parent = parent;
         this.onSuccess = onSuccess;
         this.targetConfig = cursorConfig.clone();
     }
 
     @Override
     public void close() {
+        client.setScreen(parent);
     }
 
     @Override
@@ -38,14 +47,14 @@ public class CursorEditScreen extends Screen {
             }
             catch (Exception e){e.printStackTrace();}
         });
-        addDrawableChild(new ButtonWidget.Builder(Text.literal("Confirm"),this::confirm)
+        addDrawableChild(new ButtonWidget.Builder(Text.translatable("customcursor.edit.confirm"),this::confirm)
                 .dimensions(width/2-128,height/2+heightOffset-64-24-22,126,20).build());
-        addDrawableChild(new ButtonWidget.Builder(Text.literal("Cancel"),(f)->super.close())
+        addDrawableChild(new ButtonWidget.Builder(Text.translatable("customcursor.edit.cancel"),(f)->close())
                 .dimensions(width/2+2,height/2+heightOffset-64-24-22,126,20).build());
-        var xSlider = new SliderWidget(width/2-128,height/2+heightOffset-64-24-22*2,126,20,Text.literal("X Offset"),0.,1.,this.targetConfig.x,1/64f);
-        var ySlider = new SliderWidget(width/2+2,height/2+heightOffset-64-24-22*2,126,20,Text.literal("Y Offset"),0.,1.,this.targetConfig.y,1/64f);
+        var xSlider = new SliderWidget(width/2-128,height/2+heightOffset-64-24-22*2,126,20,Text.translatable("customcursor.edit.x"),0.,1.,this.targetConfig.x,1/64f);
+        var ySlider = new SliderWidget(width/2+2,height/2+heightOffset-64-24-22*2,126,20,Text.translatable("customcursor.edit.y"),0.,1.,this.targetConfig.y,1/64f);
         Function<Boolean,Text> textfunc = (Boolean b) -> {
-            return Text.literal("Cursor is ").append(b ? "enabled" : "disabled");
+            return Text.translatable("customcursor.edit.enabled."+b);
         };
         var enabledButtonWidget = new ButtonWidget.Builder(textfunc.apply(this.targetConfig.enabled),(buttonWidget)->{
             this.targetConfig.enabled=!targetConfig.enabled;
@@ -53,7 +62,7 @@ public class CursorEditScreen extends Screen {
         })
                 .dimensions(width/2-128,height/2+heightOffset-64-24-22*4,256,20).build();
         var maxsize = 256.;
-        var size = new SliderWidget(width/2-128,height/2+heightOffset-64-24-22*3,256,20,Text.literal("Size"),0,maxsize,this.targetConfig.y,1);
+        var size = new SliderWidget(width/2-128,height/2+heightOffset-64-24-22*3,256,20,Text.translatable("customcursor.edit.size"),0,maxsize,this.targetConfig.y,1);
         size.setValueOwn(this.targetConfig.size/maxsize);
         xSlider.setChangedListener(d->this.targetConfig.x=(float)(double)d);
         ySlider.setChangedListener(d->this.targetConfig.y=(float)(double)d);

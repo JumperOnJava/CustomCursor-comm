@@ -1,0 +1,10 @@
+{
+  "customcursor.edit.confirm": "Подтвердить",
+  "customcursor.edit.cancel": "Отменить",
+  "customcursor.edit.x": "Сдвиг X",
+  "customcursor.edit.y": "Сдвиг Y",
+  "customcursor.edit.size": "Размер",
+  "customcursor.edit.enabled.true": "Курсор включен",
+  "customcursor.edit.enabled.false": "Курсор выключен",
+  "customcursor.openbutton": "Редактировать курсор"
+}
