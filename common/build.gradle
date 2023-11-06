@@ -11,6 +11,9 @@ dependencies {
     //modApi "dev.architectury:architectury:${rootProject.architectury_version}"
     modCompileOnly "curse.maven:konkrete-fabric-416797:4581979"
 }
+loom{
+    accessWidenerPath = file("../common/src/main/resources/customcursor.accesswidener")
+}
 
 architectury {
     common()

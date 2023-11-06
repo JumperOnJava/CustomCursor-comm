@@ -1,8 +1,6 @@
 package io.github.jumperonjava.customcursorcomm;
 
 import com.mojang.blaze3d.systems.RenderSystem;
-import de.keksuccino.konkrete.events.SubscribeEvent;
-import de.keksuccino.konkrete.events.client.GuiScreenEvent;
 import net.minecraft.client.gui.DrawContext;
 import net.minecraft.util.Identifier;
 import org.lwjgl.glfw.GLFW;
@@ -27,9 +25,5 @@ public class CursorRenderer {
         else {
             GLFW.glfwSetInputMode(client.getWindow().getHandle(),GLFW.GLFW_CURSOR, GLFW.GLFW_CURSOR_NORMAL);
         }
-    }
-    @SubscribeEvent()
-    public static void onEndRender(GuiScreenEvent.DrawScreenEvent.Post event){
-        render(event.getGuiGraphics(), event.getMouseX(), event.getMouseY(),0f);
     }
 }

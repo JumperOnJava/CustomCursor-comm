@@ -15,6 +15,7 @@
   "entrypoints": {
     "client": ["io.github.jumperonjava.customcursorcomm.fabric.CustomcursorcommFabric"]
   },
+  "accessWidener": "customcursor.accesswidener",
   "mixins": [
     "CustomCursor-comm-common.mixins.json"
   ],

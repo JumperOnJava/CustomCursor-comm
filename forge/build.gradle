@@ -16,6 +16,9 @@ configurations {
 loom{
     forge {
         mixinConfig "CustomCursor-comm-common.mixins.json"
+
+        convertAccessWideners = true
+        extraAccessWideners.add loom.accessWidenerPath.get().asFile.name
     }
 }
 dependencies {

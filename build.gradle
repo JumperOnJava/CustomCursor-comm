@@ -13,7 +13,7 @@ subprojects {
     loom {
         //accessWidenerPath = file("src/main/resources/customcursor.accesswidener");
         silentMojangMappingsLicense()
-
+        accessWidenerPath = project(":common").loom.accessWidenerPath
 
     }
 

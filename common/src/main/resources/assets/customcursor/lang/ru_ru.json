@@ -4,7 +4,12 @@
   "customcursor.edit.x": "Сдвиг X",
   "customcursor.edit.y": "Сдвиг Y",
   "customcursor.edit.size": "Размер",
+  "customcursor.edit.folder": "Выбрать курсор",
   "customcursor.edit.enabled.true": "Курсор включен",
   "customcursor.edit.enabled.false": "Курсор выключен",
-  "customcursor.openbutton": "Редактировать курсор"
+  "customcursor.openbutton": "Редактировать курсор",
+  "customcursor.folder.openfolder": "Папка с курсорами",
+  "customcursor.folder.accept": "Подтвердить",
+  "customcursor.folder.cancel": "Отменить",
+  "customcursor.folder.selected": "Выбранная текстура"
 }

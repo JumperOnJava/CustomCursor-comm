@@ -63,9 +63,7 @@ public class TextureWidget implements Drawable, Selectable, Element {
     }
     @Override
     public void render(DrawContext context, int mouseX, int mouseY, float delta) {
-        context.drawTexture(texture,x,y,0,0,width,height);
-        //var s = new Sprite(texture,);
-        //context.drawSprite(x,y,0,width,height,);
+        context.drawTexture(texture,x,y,0,0,width,height,width,height);
     }
 
     @Override
