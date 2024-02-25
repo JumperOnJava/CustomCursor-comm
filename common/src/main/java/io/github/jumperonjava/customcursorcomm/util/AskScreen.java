@@ -98,9 +98,9 @@ public abstract class AskScreen<T> extends Screen {
             return true;
         }
         @Override
-        public boolean mouseScrolled(double mouseX, double mouseY, double horizontalAmount)
+        public boolean mouseScrolled(double mouseX, double mouseY, double horizontalAmount,double verticalAmount)
         {
-            super.mouseScrolled(mouseX, mouseY, horizontalAmount);
+            super.mouseScrolled(mouseX, mouseY, horizontalAmount, verticalAmount);
             return true;
         }
 

@@ -18,8 +18,7 @@ import java.util.function.Consumer;
  */
 public class ScrollListWidget extends AlwaysSelectedEntryListWidget<ScrollListWidget.ScrollListEntry> {
     public ScrollListWidget(MinecraftClient client, int width, int height, int x, int y, int itemHeight) {
-        super(client,width,height,y,height,itemHeight);
-        setLeftPos(x);
+        super(client,width,height,y,itemHeight);
         //setRenderBackground(false);
         //setRenderHeader(false,0);
     }
@@ -47,12 +46,12 @@ public class ScrollListWidget extends AlwaysSelectedEntryListWidget<ScrollListWi
         selectedEntry=listEntry;
     }
 
-    @Override
-    public void render(DrawContext context, int mouseX, int mouseY, float delta) {
-        context.enableScissor(left,top,left+width,top+height-1);
-        super.render(context, mouseX, mouseY, delta);
-        context.disableScissor();
-    }
+//    @Override
+//    public void render(DrawContext context, int mouseX, int mouseY, float delta) {
+//        context.enableScissor(left,top,left+width,top+height-1);
+//        super.render(context, mouseX, mouseY, delta);
+//        context.disableScissor();
+//    }
 
     /**
      * Scroll list entry. Out of box does nothing but using addDrawableChild method you can add widgets for custom behaviour.
