@@ -21,6 +21,7 @@ repositories{
     }
 }
 loom{
+    accessWidenerPath = file("../common/src/main/resources/customcursor.accesswidener")
 
 }
 dependencies {

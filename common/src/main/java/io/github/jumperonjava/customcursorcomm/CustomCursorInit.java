@@ -2,8 +2,6 @@ package io.github.jumperonjava.customcursorcomm;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
-import de.keksuccino.konkrete.Konkrete;
-import io.github.jumperonjava.customcursorcomm.compat.KonkreteCompatibility;
 import io.github.jumperonjava.customcursorcomm.util.FileReadWrite;
 import io.github.jumperonjava.customcursorcomm.util.TextureFolder;
 import net.minecraft.client.MinecraftClient;
@@ -27,8 +25,6 @@ public class CustomCursorInit
 
 	public static void entrypoint(Function<String,Boolean> isModLoaded) {
 		getConfig();
-		if(isModLoaded.apply("konkrete"))
-			Konkrete.getEventHandler().registerEventsFrom(KonkreteCompatibility.class);
 	}
 
 	private static CursorConfigStorage loadConfig() {

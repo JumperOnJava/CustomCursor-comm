@@ -8,5 +8,6 @@ public class CustomcursorcommFabric implements ClientModInitializer {
     @Override
     public void onInitializeClient() {
         CustomCursorInit.entrypoint((s)->FabricLoader.getInstance().isModLoaded(s));
+        
     }
 }
