@@ -1,0 +1,15 @@
+{
+  "customcursor.edit.confirm": "確認",
+  "customcursor.edit.cancel": "取消",
+  "customcursor.edit.x": "X 偏移",
+  "customcursor.edit.y": "Y 偏移",
+  "customcursor.edit.size": "大小",
+  "customcursor.edit.folder": "從資料夾選取游標",
+  "customcursor.edit.enabled.true": "游標：已啟用",
+  "customcursor.edit.enabled.false": "游標：已停用",
+  "customcursor.openbutton": "編輯游標",
+  "customcursor.folder.openfolder": "游標資料夾",
+  "customcursor.folder.accept": "確認",
+  "customcursor.folder.cancel": "取消",
+  "customcursor.folder.selected": "已選取的游標材質"
+}
