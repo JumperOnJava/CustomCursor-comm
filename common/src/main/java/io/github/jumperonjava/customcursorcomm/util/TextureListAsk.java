@@ -29,7 +29,7 @@ public abstract class TextureListAsk extends AskScreen<Identifier> {
         }
     }*/
 
-    protected Identifier EMPTY_TEXTURE = new Identifier("minecraft","empty");
+    protected Identifier EMPTY_TEXTURE = Identifier.of("minecraft","empty");
     private Identifier selectedTexture = EMPTY_TEXTURE;
     public static final int gap = 2;
     private List<Identifier> textures = new ArrayList<>();
@@ -80,7 +80,7 @@ public abstract class TextureListAsk extends AskScreen<Identifier> {
             if(!id.toLowerCase().contains(s.toLowerCase()))
                 continue;
             var button = new ButtonWidget.Builder(Text.literal(id),b->{
-                this.selectedTexture = new Identifier(b.getMessage().getString());
+                this.selectedTexture = Identifier.of(b.getMessage().getString());
                 selectedTextureWidget.setTexture(selectedTexture);
             })
                     .position(40,10)
@@ -95,7 +95,7 @@ public abstract class TextureListAsk extends AskScreen<Identifier> {
 
     @Override
     public void render(DrawContext context, int mouseX, int mouseY, float delta) {
-        renderBackground(context);
+        renderBackground(context,mouseX,mouseY,delta);
         super.render(context, mouseX, mouseY, delta);
         context.drawText(
                 textRenderer,

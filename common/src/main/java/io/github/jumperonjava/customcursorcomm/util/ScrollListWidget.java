@@ -18,8 +18,9 @@ import java.util.function.Consumer;
  */
 public class ScrollListWidget extends AlwaysSelectedEntryListWidget<ScrollListWidget.ScrollListEntry> {
     public ScrollListWidget(MinecraftClient client, int width, int height, int x, int y, int itemHeight) {
-        super(client,width,height,y,height,itemHeight);
-        setLeftPos(x);
+        super(client,width,height,y,itemHeight);
+//        setLeftPos(x);
+        setX(x);
         //setRenderBackground(false);
         //setRenderHeader(false,0);
     }
@@ -32,8 +33,9 @@ public class ScrollListWidget extends AlwaysSelectedEntryListWidget<ScrollListWi
         entry.isHoveredFunction = this::isMouseOver;
         return super.addEntry(entry);
     }
+
     @Override
-    protected int getScrollbarPositionX() {
+    protected int getScrollbarX() {
         return width-6;
     }
     @Override
@@ -48,9 +50,9 @@ public class ScrollListWidget extends AlwaysSelectedEntryListWidget<ScrollListWi
     }
 
     @Override
-    public void render(DrawContext context, int mouseX, int mouseY, float delta) {
-        context.enableScissor(left,top,left+width,top+height-1);
-        super.render(context, mouseX, mouseY, delta);
+    public void renderWidget(DrawContext context, int mouseX, int mouseY, float delta) {
+        context.enableScissor(getRowLeft(),getY(),getRowLeft()+width,getY()+height-1);
+        super.renderWidget(context, mouseX, mouseY, delta);
         context.disableScissor();
     }
 

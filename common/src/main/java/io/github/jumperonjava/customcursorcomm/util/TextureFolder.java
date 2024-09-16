@@ -100,10 +100,10 @@ public class TextureFolder {
     private Identifier getIdentifierFor(Path p) {
         var s = p.toAbsolutePath().toString().replaceAll(Pattern.quote(path.toAbsolutePath().toString()),"").replace("\\","/").toLowerCase().substring(1);
         try{
-            return new Identifier(namespace,s);
+            return Identifier.of(namespace,s);
         }
         catch (InvalidIdentifierException e){
-            return new Identifier(namespace,"wrongfilename" + s.hashCode());
+            return Identifier.of(namespace,"wrongfilename" + s.hashCode());
         }
     }
 

@@ -49,7 +49,7 @@ public class CursorEditScreen extends Screen {
         field.setText(this.targetConfig.identifier.toString());
         field.setChangedListener((s)->{
             try{
-                setIdentifier(new Identifier(s));
+                setIdentifier(Identifier.of(s));
             }
             catch (Exception e){e.printStackTrace();}
         });
@@ -89,6 +89,31 @@ public class CursorEditScreen extends Screen {
         addDrawableChild(enabledButtonWidget);
         addDrawableChild(size);
         addDrawableChild(field);
+        addDrawable((context,mouseX,mouseY,delta)->{
+            //renderBackground(context,mouseX,mouseY,delta);
+            var vec = new Vec2f(mouseX-width/2,mouseY-height/2).normalize().multiply(delta);
+            bgx += vec.x;
+            bgy += vec.y;
+            color+=delta*0.05;
+            var n = 2;
+
+            renderCheckerboard(
+                    context,
+                    delta,
+                    ColorHelper.Argb.getArgb(255,
+                            (int) (128+64*Math.pow(Math.sin(color+0*Math.PI/3),n)),
+                            (int) (128+64*Math.pow(Math.sin(color+2*Math.PI/3),n)),
+                            (int) (128+64*Math.pow(Math.sin(color+4*Math.PI/3),n))
+                    ),
+                    ColorHelper.Argb.getArgb(255,
+                            (int) ((192+63*Math.pow(Math.cos(color+0*Math.PI/3),n))),
+                            (int) ((192+63*Math.pow(Math.cos(color+2*Math.PI/3),n))),
+                            (int) ((192+63*Math.pow(Math.cos(color+4*Math.PI/3),n)))
+                    )
+            );
+            context.drawTexture(this.targetConfig.identifier,width/2-64,height/2+heightOffset-64,0,0,128,128, 128,128);
+            context.drawTexture(Identifier.of("customcursor","textures/gui/pointer.png"), (int) (width/2-64+this.targetConfig.x*128)-4, (int) (height/2-64+this.targetConfig.y*128)+heightOffset-4,0,0,8,8, 8,8);
+        });
     }
 
     private void setIdentifier(Identifier identifier) {
@@ -105,50 +130,26 @@ public class CursorEditScreen extends Screen {
     private float bgx=0,bgy=0,color,rot;
     @Override
     public void render(DrawContext context, int mouseX, int mouseY, float delta) {
-        int heightOffset = (int) (24*2.75   );
-        renderBackground(context);
-        var vec = new Vec2f(mouseX-width/2,mouseY-height/2).normalize().multiply(delta);
-        bgx += vec.x;
-        bgy += vec.y;
-        color+=delta*0.05;
-        var n = 2;
-        renderCheckerboard(
-                context,
-                delta,
-                ColorHelper.Argb.getArgb(255,
-                        (int) (128+64*Math.pow(Math.sin(color+0*Math.PI/3),n)),
-                        (int) (128+64*Math.pow(Math.sin(color+2*Math.PI/3),n)),
-                        (int) (128+64*Math.pow(Math.sin(color+4*Math.PI/3),n))
-                ),
-                ColorHelper.Argb.getArgb(255,
-                        (int) ((192+63*Math.pow(Math.cos(color+0*Math.PI/3),n))),
-                        (int) ((192+63*Math.pow(Math.cos(color+2*Math.PI/3),n))),
-                        (int) ((192+63*Math.pow(Math.cos(color+4*Math.PI/3),n)))
-                )
-        );
 
-        context.drawTexture(this.targetConfig.identifier,width/2-64,height/2+heightOffset-64,0,0,128,128, 128,128);
 
-        context.drawTexture(new Identifier("customcursor","textures/gui/pointer.png"), (int) (width/2-64+this.targetConfig.x*128)-4, (int) (height/2-64+this.targetConfig.y*128)+heightOffset-4,0,0,8,8, 8,8);
+
         super.render(context, mouseX, mouseY, delta);
-    }
+
+           }
 
     private void renderCheckerboard(DrawContext context, float delta, int color1, int color2) {
         int heightOffset = (int) (24*2.75);
         context.fill(width/2-64,height/2+heightOffset-64,width/2+64,height/2+heightOffset+64,color2);
         context.enableScissor(width/2-64,height/2+heightOffset-64,width/2+64,height/2+heightOffset+64);
         rot+=new Random().nextFloat(-0.5f,0.5f)*delta/4;
-        //bgx+=Math.sin(rot)/9;
-        //bgy+=Math.cos(rot)/9;
-        //bgx+=delta/9;
-        //bgy+=delta/9;
+
         context.getMatrices().push();
         context.getMatrices().translate((width/2-64+MathHelper.floorMod(bgx,16)-16),(height/2+heightOffset-64+MathHelper.floorMod(bgy,16)-16),0);
         float r = ColorHelper.Argb.getRed(color1)/255f;
         float g = ColorHelper.Argb.getGreen(color1)/255f;
         float b = ColorHelper.Argb.getBlue(color1)/255f;
         RenderSystem.setShaderColor(r,g,b,255);
-        context.drawTexture(new Identifier("customcursor","textures/gui/backgroundcheckerboard.png"),
+        context.drawTexture(Identifier.of("customcursor","textures/gui/backgroundcheckerboard.png"),
                 0,
                 0,
                 0,

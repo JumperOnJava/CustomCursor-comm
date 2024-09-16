@@ -57,7 +57,7 @@ public abstract class AskScreen<T> extends Screen {
         var askSubScreen = new OverlayScreen(0,0, currentScreen.width,currentScreen.height).setScreen(askScreen);
         currentScreen.children();
         currentScreen.drawables.add(0,askSubScreen);
-        ((java.util.List<Element>)currentScreen.children()).add(0,askSubScreen);
+        ((java.util.List)currentScreen.children()).add(0,askSubScreen);
     }
 
     private static <T extends AskScreen<?>> void closeScreen(T screen) {
@@ -98,9 +98,9 @@ public abstract class AskScreen<T> extends Screen {
             return true;
         }
         @Override
-        public boolean mouseScrolled(double mouseX, double mouseY, double horizontalAmount)
+        public boolean mouseScrolled(double mouseX, double mouseY, double horizontalAmount, double verticalAmount)
         {
-            super.mouseScrolled(mouseX, mouseY, horizontalAmount);
+            super.mouseScrolled(mouseX, mouseY, horizontalAmount,verticalAmount);
             return true;
         }
 

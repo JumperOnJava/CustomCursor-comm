@@ -3,6 +3,7 @@ package io.github.jumperonjava.customcursorcomm.mixin;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.gui.DrawContext;
 import net.minecraft.client.gui.hud.InGameHud;
+import net.minecraft.client.render.RenderTickCounter;
 import net.minecraft.client.util.InputUtil;
 import org.spongepowered.asm.mixin.Final;
 import org.spongepowered.asm.mixin.Mixin;
@@ -16,7 +17,7 @@ public class CobblemonFix {
     @Shadow @Final private MinecraftClient client;
     boolean locked=false;
     @Inject(method = "render",at = @At("HEAD"))
-    void lock(DrawContext context, float tickDelta, CallbackInfo ci){
+    void lock(DrawContext context, RenderTickCounter tickCounter, CallbackInfo ci){
 
         if(client.currentScreen == null)
         {
